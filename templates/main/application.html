@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block write_applications %}
+
+    <div class="write-application shadow">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ application_form|crispy }}
+            <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+    </div>
+
+{% endblock write_applications %}

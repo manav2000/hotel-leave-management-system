@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block reject_form %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ reject_form.as_p }}
+        <button type="submit" class="btn btn-danger">REJECT</button>
+    </form>
+
+{% endblock reject_form %}

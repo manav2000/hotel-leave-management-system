@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block teacher %}
+    {% if applications %}
+    <div class="teacher-block shadow">
+        <span class="counts">{{ applications.count }}</span>
+        <div>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>You have recieved {{ applications.count }} leave request applications from your menties</span>
+            <a href="{% url 'requests' %}" class="btn btn-success">Read Applications</a>
+        </div>
+    </div>
+    {% else %}
+        <div class="teacher-block shadow">
+            <span class="counts">0</span>
+            <div>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>You have recieved 0 leave request applications from your menties</span>
+                <a href="{% url 'requests' %}" class="btn btn-success">Read Applications</a>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock teacher %}

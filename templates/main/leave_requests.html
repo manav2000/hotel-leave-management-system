@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block requests %}
+
+    <div class="request-header">
+        <h1>leave applications</h1>
+    </div>
+    <div class="student-applications container" style="margin-bottom: 40px">
+        {% for leave in leaves %}
+            <div class="request-box shadow">
+                <div><span><b>Mentie:</b>  </span>{{ leave.student.user.name }}</div>
+                <div><span><b>Purpose:</b>  </span>{{ leave.purpose }}</div>
+                <div><b>From:</b> {{ leave.date_from }}</div>
+                <div><b>Till:</b> {{ leave.till_date }}</div>
+                {% if leave.approved %}
+                    <div><b style="color:green;">Permission to the mentie was granted</b></div>
+                {% elif leave.rejected %}
+                    <div><b style="color:red;">Permission to the mentie was denied</b></div>
+                {% else %}
+                    <div class="buttons" style="display:flex; flex-direction: row;">
+                        <a href="{% url 'accept_rec' leave.pk %}" class="btn btn-success" style="margin-right: 25px">Accept</a>
+                        <a href="{% url 'reject_reason' leave.pk %}" class="btn btn-danger" style="margin-right: 25px">Reject</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock requests %}

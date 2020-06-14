@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block recommendation %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ rec_form.as_p }}
+        <button type="submit" class="btn btn-success">ACCEPT</button>
+    </form>
+
+{% endblock recommendation %}

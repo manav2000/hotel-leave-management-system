@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block students %}
+
+    <div class="teacher-block shadow">
+        <div>
+            <i class="fa fa-external-link-square" aria-hidden="true"></i>
+            <span>You have send {{ applications.count }} leave request applications to your mentor</span>
+            <a href="{% url 'application' %}" class="btn btn-success">Write New Application</a>
+            <a href="{% url 'application-status' %}" class="btn btn-success" style="margin-top: 10px">Check Updates On Requests</a>
+        </div>
+    </div>
+
+{% endblock students %}

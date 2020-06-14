@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block home %}
+
+    <div class="sign-up-form shadow">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="username">Email:</label><br>
+            <input type="email" name="username" placeholder="Enter email here" style="padding:5px; width:100%; border: none; border-radius: 5px"><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" name="password" style="padding:5px ; width:100%; border: none; border-radius: 5px"><br><br>
+
+            <button type="submit" class="btn btn-primary">LOGIN</button>
+        </form>
+    </div>
+
+{% endblock home %}
