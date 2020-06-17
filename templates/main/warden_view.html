@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block warden %}
+
+    {% if applications %}
+    <div class="teacher-block shadow">
+        <span class="counts">{{ applications.count }}</span>
+        <div>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>There are total {{ applications.count }} student, who's leave requests are approved.</span>
+            <a href="{% url 'students-leaving' %}" class="btn btn-success">Take a look at applications</a>
+        </div>
+    </div>
+    {% else %}
+        <div>
+            Nothing to show
+        </div>
+    {% endif %}
+
+{% endblock warden %}

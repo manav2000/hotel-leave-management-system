@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block home %}
 
-    <div class="sign-up-form shadow">
+    <div class="sign-up-form shadow" style="margin-bottom: 40px">
         <form action="" method="post">
             {% csrf_token %}
             {{ user_form|crispy }}

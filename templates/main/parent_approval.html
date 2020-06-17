@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block parent_approval %}
+
+    <div class="mail-response shadow" data-aos="fade-up">
+        <div>Name of your child: {{ application.student_name }}</div>
+        <div>Purpose of leave: {{ application.purpose }}</div>
+        <div>
+            <p>Leave Duration
+                from: {{ application.date_from }}
+                to: {{ application.till_date }}
+            </p>
+        </div>
+        {% if application.parent_approval %}
+            <div style="color:green;">
+                <b>You have acknowledged your child {{ application.student_name }} leave request.<b>
+            </div>
+        {% elif application.parent_rejection  %}
+            <div>
+                <b style="color:red;">You have denied your child leave request. Do you want to change your decision</b><br>
+                <a href="{% url 'parent-approves' application.pk %}" class="btn btn-success">Yes, Allow</a>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'parent-approves' application.pk %}" class="btn btn-success">Yes, Allow</a>
+                <a href="{% url 'parent-rejects' application.pk %}" class="btn btn-danger">Don't allow</a>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock parent_approval %}

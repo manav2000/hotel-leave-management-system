@@ -7,7 +7,7 @@
     </div>
     <div class="student-applications container" style="margin-bottom: 40px">
         {% for leave in leaves %}
-            <div class="request-box shadow">
+            <div class="request-box shadow" data-aos="fade-up">
                 <div><span><b>Mentie:</b>  </span>{{ leave.student.user.name }}</div>
                 <div><span><b>Purpose:</b>  </span>{{ leave.purpose }}</div>
                 <div><b>From:</b> {{ leave.date_from }}</div>

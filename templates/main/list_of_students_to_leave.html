@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block students_to_leave %}
+
+    <div class="request-header">
+        <h1>Applications</h1>
+    </div>
+    <div class="filter">
+        {% if leave_filter %}
+            <form method="GET" class="filter-form shadow" style="background: lightskyblue">
+                {{ leave_filter.form|crispy }}
+                <button type="submit" class="btn btn-primary" style="margin-top: 45px; height: 40px;">GO</button>
+            </form>
+        {% endif %}
+    </div>
+    <div class="student-applications container" style="margin-bottom: 40px">
+        {% for leave in leave_filter.qs %}
+            <div class="request-box shadow" data-aos="fade-up">
+                <div><span><b>Mentie:</b> </span>{{ leave.student.user.name }}</div>
+                <div><span><b>Purpose:</b>  </span>{{ leave.purpose }}</div>
+                <div><b>From:</b> {{ leave.date_from }}</div>
+                <div><b>Till:</b> {{ leave.till_date }}</div>
+                {% if leave.left_hostel %}
+                    <div>Started leave on: <b style="color:green">{{ leave.living_date }}</b></div>
+                    {% if leave.returned_hostel %}
+                        <div>Status: Leave Ended on <b style="color:red">{{ leave.returning_date }}</b></div>
+                        <div>was delayed: {% if leave.is_delayed %} YES {% else %} NO {% endif %} </div>
+                    {% else %}
+                        <div>Status: ON A LEAVE and will return on <b style="color:orange">{{ leave.till_date }}</b></div>
+                        <div class="buttons" style="display:flex; flex-direction: row;">
+                            <a href="{% url 'end-leave' leave.pk %}" class="btn btn-danger" style="margin-right: 25px">End Leave</a>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="buttons" style="display:flex; flex-direction: row;">
+                        <a href="{% url 'start-leave' leave.pk %}" class="btn btn-success" style="margin-right: 25px">Start Leave</a>
+                        <a href="{% url 'end-leave' leave.pk %}" class="btn btn-danger" style="margin-right: 25px">End Leave</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock students_to_leave %}

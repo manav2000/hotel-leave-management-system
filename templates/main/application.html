@@ -6,6 +6,8 @@
     <div class="write-application shadow">
         <form action="" method="post">
             {% csrf_token %}
+            {{ form.errors.date_form }}
+            {{ form.errors.till_date }}
             {{ application_form|crispy }}
             <button type="submit" class="btn btn-primary">submit</button>
         </form>

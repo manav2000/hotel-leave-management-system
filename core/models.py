@@ -39,6 +39,7 @@ class UserProfile(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_mentor = models.BooleanField(default=False)
+    is_warden = models.BooleanField(default=False)
 
     objects = UserProfileManager()
 
@@ -80,6 +81,9 @@ class Student(models.Model):
     def __str__(self):
         return str(self.user)
 
+    def mentor_name(self):
+        return str(self.mentor.user.name)
+
 
 class Applications(models.Model):
     mentor = models.ForeignKey(
@@ -90,9 +94,42 @@ class Applications(models.Model):
     date_from = models.DateField()
     till_date = models.DateField()
     approved = models.BooleanField(default=False)
+    parent_approval = models.BooleanField(default=False)
     rejected = models.BooleanField(default=False)
+    parent_rejection = models.BooleanField(default=False)
+    left_hostel = models.BooleanField(default=False)
+    returned_hostel = models.BooleanField(default=False)
+    living_date = models.DateTimeField(auto_now_add=True, blank=True)
+    returning_date = models.DateTimeField(auto_now_add=True, blank=True)
+    is_delayed = models.BooleanField(default=False)
     reason = models.TextField()
     recommendation = models.TextField()
+    message_to_parent = models.TextField()
 
     def __str__(self):
         return "application from {} to his mentor {}".format(self.student.user.name, self.mentor.user.name)
+
+    def mentor_name(self):
+        return self.mentor.user.name
+
+    def student_name(self):
+        return str(self.student.user.name)
+
+
+class Parent(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    parent_mail = models.EmailField(max_length=255)
+    parent_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return str(self.parent_name)
+
+    def parents_child_name(self):
+        return str(self.student.user.name)
+
+
+class Warden(models.Model):
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user.name)

@@ -3,14 +3,14 @@
 {% block students_previous_applications %}
 
     {% if applications %}
-        <div class="student-applications container">
+        <div class="student-applications container" style="margin-bottom: 50px">
             {% for leave in applications %}
-                <div class="request-box shadow">
+                <div class="request-box shadow" data-aos="fade-up">
                     <div><span><b>Mentie:</b>  </span>{{ leave.student.user.name }}</div>
                     <div><span><b>Purpose:</b>  </span>{{ leave.purpose }}</div>
                     <div><b>From:</b> {{ leave.date_from }}</div>
                     <div><b>Till:</b> {{ leave.till_date }}</div>
-                    {% if leave.approved %}
+                    {% if leave.approved and leave.parent_approval %}
                         <div class="accepted-req">
                             your leave application has been <b style="color:green;">APPROVED</b>
                         </div>
@@ -24,6 +24,11 @@
                         {% if leave.reason %}
                             <div class="rec-by-mentor"><span><b>Reason by mentor:</b>  </span>{{ leave.reason }}</div>
                         {% endif %}
+                    {% elif leave.approved and leave.parent_rejection %}
+                        <div style="color:red">
+                            The leave request was approved by your mentor but denied by your parent.<br>
+                            <span style="color:orange !important"><b>NOTE:</b> You change the decision by changing the parents decision.</span>
+                        </div>
                     {% else %}
                         <div><b>Status:</b><span style="color:orange"> Pending...</span></div>
                     {% endif %}

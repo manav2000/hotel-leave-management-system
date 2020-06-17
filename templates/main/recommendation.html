@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block recommendation %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ rec_form.as_p }}
-        <button type="submit" class="btn btn-success">ACCEPT</button>
-    </form>
+    <div class="rec-form shadow">
+        <form method="post">
+            {% csrf_token %}
+            {{ rec_form|crispy }}
+            <button type="submit" class="btn btn-success">ACCEPT</button>
+        </form>
+    </div>
 
 {% endblock recommendation %}

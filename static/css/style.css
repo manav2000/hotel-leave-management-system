@@ -91,7 +91,7 @@ a {
     padding: 30px;
 }
 
-.request-box {
+.request-box, .mail-response {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -109,11 +109,33 @@ a {
     text-decoration: underline;
 }
 
-.write-application {
+.write-application, .rec-form {
     width: 60%;
     margin: auto;
     margin-top: 100px;
     background: lightskyblue;
     padding: 30px;
     margin-bottom: 50px;
+}
+
+.mail-response {
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.filter-form {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    padding: 20px;
+}
+
+.filter-form > div {
+    width: 150px;
+    margin: 20px;
+}
+
+.alert-error {
+    background: rgba(255, 0, 0, 0.3);
 }
