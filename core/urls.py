@@ -11,6 +11,7 @@ urlpatterns = [
     path('your-applications/', students_previous_app_status,
          name='application-status'),
     path('login/', login_view, name='login'),
+    path('reset_pwd/', reset_password, name='reset'),
     path('logout/', logout_view, name='logout'),
     path('teacher/', teacher_view, name="teacher-view"),
     path('student/', student_view, name="student-view"),

@@ -159,6 +159,26 @@ def login_view(request):
         return render(request, 'main/login.html')
 
 
+def reset_password(request):
+    if request.method == 'POST':
+
+        reset_form = ResetPassword(data=request.POST)
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if(reset_form.is_valid()):
+            user = UserProfile.objects.get(email=email)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Your password was changed successfully')
+            return redirect('login')
+
+    else:
+        reset_form = ResetPassword()
+
+    return render(request, 'main/reset_pwd.html', {'reset_form': reset_form})
+
+
 @login_required
 def logout_view(request):
     logout(request)

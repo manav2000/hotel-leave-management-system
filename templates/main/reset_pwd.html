@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block home %}
+
+    <div class="sign-up-form shadow">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ reset_form|crispy }}
+            <button type="submit" class="btn btn-primary">CHANGE PASSWORD</button>
+        </form>
+    </div>
+
+{% endblock home %}
