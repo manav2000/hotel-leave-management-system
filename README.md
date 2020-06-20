@@ -12,5 +12,5 @@
     <li>mail notification to mentor and parent when student leaves or returns hotel</li>
 
 
-#Note:
-    -change email_host_user to email in settings.py file to activate emailservice
+# Note:
+    - change email_host_user to email in settings.py file to activate emailservice
